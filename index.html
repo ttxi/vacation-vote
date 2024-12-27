@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>投票页面</title>
+    <style>
+      .container {
+        text-align: center;
+        margin-top: 100px;
+      }
+      .question {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      .btn {
+        padding: 10px 20px;
+        margin: 0 10px;
+        font-size: 18px;
+        cursor: pointer;
+      }
+      #disagreeBtn {
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="question" id="questionText">你觉得年假加100天合理么</div>
+      <button class="btn" id="agreeBtn">合理</button>
+      <button class="btn" id="disagreeBtn">不合理</button>
+    </div>
+
+    <script>
+      const questionText = document.getElementById("questionText");
+      const agreeBtn = document.getElementById("agreeBtn");
+      const disagreeBtn = document.getElementById("disagreeBtn");
+
+      function moveButton() {
+        const maxX = window.innerWidth - disagreeBtn.offsetWidth;
+        const maxY = window.innerHeight - disagreeBtn.offsetHeight;
+        disagreeBtn.style.left = Math.random() * maxX + "px";
+        disagreeBtn.style.top = Math.random() * maxY + "px";
+      }
+
+      agreeBtn.addEventListener("click", () => {
+        if (questionText.textContent === "你觉得年假加100天合理么") {
+          questionText.textContent = "真的么";
+          agreeBtn.textContent = "真的";
+          disagreeBtn.textContent = "假的";
+        } else if (questionText.textContent === "真的么") {
+          questionText.textContent = "太好了";
+          agreeBtn.style.display = "none";
+          disagreeBtn.style.display = "none";
+        }
+      });
+
+      disagreeBtn.addEventListener("click", moveButton);
+    </script>
+  </body>
+</html>
